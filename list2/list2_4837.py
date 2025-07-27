@@ -2,15 +2,27 @@
 
 # 부분집합 : 합이 8인 경우 ex) {1,2,5}, {1,3,4}
 
+# 1. 모든 부분집합을 찾아서 합이 K인 경우 찾기
 
-T = int(input())        # testcase 개수
+# 비트연산을 이용해서 
+# 0 0 0 1 이면 4
+# 1 1 1 1 이면 1 2 3 4 
 
-for i in range(T):
+T = int(input())
+
+lst = [x for x in range(1, 13)]      # bit리스트 활용
+for case in range(T):
     N, K = map(int, input().split())
 
     count = 0
-    lst = [[0] for x in range(12)]      # bit리스트 활용
-    print(f'#{i+1}', count)
+    for i in range(1<<12):
+        temp_lst = []
+        for j in range(12):
+            if i & (1<<j):
+                temp_lst.append(lst[j])
+        if len(temp_lst) == N and sum(temp_lst) == K:
+            count += 1
+    print(f'#{case+1}', count)
 
 
 # count = 0
