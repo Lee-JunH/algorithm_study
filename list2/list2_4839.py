@@ -7,17 +7,17 @@
 
 T = int(input())
 
-def binary_search(P, jjok):
-    first = 1
-    last = P
-    center = (1 + P) // 2
+def binary_search(P, jjok):         #이진탐색 함수
+    start = 1                       # 시작 위치
+    end = P                         # 끝 위치
+    center = (start + end) // 2     # 중앙 페이지
     count = 0
-    while center != jjok:
-        if center < jjok:
-            first = center
-        elif center > jjok:
-            last = center
-        center = (first + last) // 2
+    while center != jjok:           # 목표를 찾을 때 까지 반복
+        if center < jjok:           # 쪽이 더 크면 center ~ end
+            start = center
+        elif center > jjok:         # 쪽이 더 작으면 start ~ center
+            end = center
+        center = (start + end) // 2
         count += 1
     return count
 
@@ -27,6 +27,7 @@ for i in range(T):
 
     count_A = binary_search(P, A)
     count_B = binary_search(P, B)
+    
     print(f'#{i+1}', end=' ')
     if count_A < count_B:
         print('A')
