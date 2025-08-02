@@ -5,9 +5,41 @@
 
 T = int(input())
 
-for case in range(T):
-    iter_str = input()
+# def my_len(length):
+#     count = 0
+#     for _ in length:
+#         count += 1
+#     return count
 
-    temp = []
-    for s in iter_str:
-        temp.append(s)
+for case in range(T):
+    text = list(input())
+
+    i = 0
+    while i < len(text) - 1:
+        if text[i] == text[i+1]:
+            text.pop(i)
+            text.pop(i)
+            if i == 0:
+                i -= 1
+            else:
+                i -= 2
+        i += 1
+    
+    print(f'#{case+1} {len(text)}')
+
+
+# 10개 중 9개 맞음
+
+# T = int(input())
+# for case in range(T):
+#     text = list(input())
+
+#     i = 0
+#     while i < len(text) - 1:
+#         if text[i] == text[i+1]:
+#             text.pop(i)
+#             text.pop(i)
+#             i -= 2
+#         i += 1
+
+#     print(f'#{case+1} {len(text)}')
