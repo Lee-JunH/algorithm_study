@@ -1,7 +1,9 @@
-# swea_4873 - 반복문자 지우기 - D2
+"""
+swea_4873 - 반복문자 지우기 - D2
 
-# 문제 : 문자열에서 반복된 문자를 지운다. 남은 문자열의 길이 출력
-# 예시 : CAAABBA -> C(AA)ABBA -> CA(BB)A -> C(AA) -> C
+문제 : 문자열에서 반복된 문자를 지운다. 남은 문자열의 길이 출력
+예시 : CAAABBA -> C(AA)ABBA -> CA(BB)A -> C(AA) -> C
+"""
 
 
 # def my_len(length):
