@@ -23,3 +23,15 @@ for case in range(T):
         print(my_dict[s], end='')
     print()
 
+
+# version 2
+# T = int(input())
+# for case in range(T):
+#     str1 = input()
+#
+#     my_stack = []
+#     my_dict = {'b': 'd', 'd': 'b', 'p': 'q', 'q': 'p'}
+#     reverse_str1 = str1[::-1]
+#     for s in reverse_str1:
+#         my_stack.append(my_dict[s])
+#     print(f'#{case + 1} {"".join(my_stack)}')

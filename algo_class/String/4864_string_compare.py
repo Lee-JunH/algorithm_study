@@ -27,7 +27,9 @@ for case in range(T):
         else:
             i_1 = 0
             i_2 += 1
-    if i_1 == len1 : result = 1
-    else : result = 0
+    if i_1 == len1:
+        result = 1
+    else:
+        result = 0
     print(f'#{case+1} {result}')
 
