@@ -14,6 +14,6 @@ for case in range(T):
     N, M = map(int, input().split())
     my_queue = list(map(int, input().split()))
 
-    count = M - N * (M // N)   # 최소 반복 횟수 계산
+    count = M - N * (M // N)   # 최소 반복 횟수 계산하여 빼주기
     print(f'#{case+1} {my_queue[count]}')
 
