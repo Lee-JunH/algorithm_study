@@ -13,19 +13,29 @@ SWEA_4864 - 문자열 비교 - D2
 - KMP알고리즘으로 푼다.
 """
 
-def lps():
+def lps(pattern):
+    pi = [0] * len(pattern)
 
-    pass
+    i = 0
+    check = 1
+    for j in range(1, len(pattern)):
+        while (i > 0 and pattern[j] != pattern[i]):
+            i = pi[i-1]
+
+        if pattern[i] == pattern[j]:
+            pi[j] = i + 1
+            i += 1
+        
+    return pi
 
 T = int(input())
 for case in range(T):
     str1 = input()
     str2 = input()
 
+    print(lps())
 
-    pass
-
-
+print('iam im')
 # T = int(input())
 # for case in range(T):
 #     str1 = input()

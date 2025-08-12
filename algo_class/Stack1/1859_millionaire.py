@@ -16,45 +16,24 @@ SWEA_1859 - 백만장자 프로젝트 - D2
 - 살 때는 stack에 push하고 팔 때는 pop하며 차이 계산
 """
 
-# def find_max(lst):
-#     max_n = 0
-#     for n in lst:
-#         if max_n < n:
-#             max_n = n
-#     return max_n
+def find_max(lst):
+    max_n = 0
+    for n in lst:
+        if max_n < n:
+            max_n = n
+    return max_n
 
-
-# T = int(input())
-# for case in range(T):
-#     N = int(input())
-#     price = list(map(int, input().split()))
-
-#     max_num = find_max(price)
-#     total = 0
-#     for i in range(N):
-#         if price[i] == max_num:
-#             max_num = find_max(price[i+1:])
-#         else:
-#             total += max_num - price[i]
-#     print(f'#{case+1} {total}')
 
 T = int(input())
 for case in range(T):
     N = int(input())
     price = list(map(int, input().split()))
 
-    count = 0
+    max_num = find_max(price)
     total = 0
-    my_stack = []
     for i in range(N):
-        if my_stack:
-            temp = my_stack.pop()
-            if temp > price[i]:
-                count = 0
-            else:
-                count += 1
-                total += (price[i] - temp) * count
-            my_stack.append(price[i])
+        if price[i] == max_num:
+            max_num = find_max(price[i+1:])
         else:
-            my_stack.append(price[i])
+            total += max_num - price[i]
     print(f'#{case+1} {total}')
