@@ -21,7 +21,7 @@ for case in range(T):
                 break
 
             temp = lst.pop()        # 리스트에 있는 짝이 맞는지 보기 위해 pop
-            if (s == ')' and temp != '(') or (s == '}' and temp != '}'): # 짝이 안맞는 경우
+            if (s == ')' and temp != '(') or (s == '}' and temp != '{'): # 짝이 안맞는 경우
                 correct = 0
                 break
     if len(lst) != 0:   # 모두 확인했는데 짝이 없는 경우 오류!
