@@ -32,20 +32,16 @@ for case in range(T):
     i = N
     pizza = N   # 현재 화덕에 있는 피자 개수
     while len(my_queue) != 1:
-        temp = my_queue.pop(0) // 2      # 첫 번째 값 확인
+        temp = my_queue.pop(0)      # 첫 번째 값 확인
         num_temp = final_num.pop(0)
         if temp == 0:
             if len(pizza_lst) != i:   # 0이고 더 넣을 피자 넣기
-                my_queue.append(pizza_lst[i])
+                my_queue.append(pizza_lst[i] // 2)  # 넣고 돌릴거니까 넣을 때 나누기
                 final_num.append(i+1)
                 i += 1
         else:   # 확인 했던 피자 다시 뒤에 넣어주기
-            my_queue.append(temp)
+            my_queue.append(temp // 2)  # 넣고 돌릴거니까 넣을 때 나누기
             final_num.append(num_temp)
 
-        # 이 멍청아
-        # rotate += 1         # 회전 시작
-        # if rotate % N == 0:
-        #     rotate = 0
-        #     my_queue = [x // 2 for x in my_queue]   # 회전 후 치즈 반으로 나누기
     print(f'#{case+1} {final_num.pop(0)}')
+
