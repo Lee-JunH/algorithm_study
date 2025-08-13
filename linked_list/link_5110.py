@@ -12,29 +12,30 @@ SWEA_5110 - 수열 합치기 - D3
 풀이
 - 앞 문제와 같이 찾은 숫자의 인덱스에 새로운 리스트 추가해준다.
 """
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
 
 T = int(input())
 for case in range(T):
-    N, M = map(int, input().split())
+    N, M = map(int, input().split())    # N: 수열의 길이, M: 수열의 개수
     suyeol = [list(map(int, input().split())) for _ in range(M)]
 
+    result = suyeol[0].copy()
     for i in range(1, M):
-        find = suyeol[i][0]
-        index = -1
         for j in range(N):
-            if suyeol[0][j] > find:
-                index = j
+            if suyeol[i][0] < result[j]:
+                result[j:j] = suyeol[i]
                 break
-        if index == -1:
-            suyeol[0].extend(suyeol[i])
         else:
-            temp1 = suyeol[0][:index]  # index 앞 저장
-            temp2 = suyeol[0][index:]  # index 뒤 저장
-            temp1.extend(suyeol[i])
-            temp1.extend(temp2)     # index 뒤 값 추가
-            suyeol[0] = temp1
+            length = len(result)
+            result[length:length] = suyeol[i]
+    result = result[::-1]
     print(f'#{case+1}', end=' ')
-    result = suyeol[0][::-1]
     for k in range(10):
+        if k >= len(result):
+            break
         print(result[k], end=' ')
     print()
