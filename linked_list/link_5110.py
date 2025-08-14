@@ -18,7 +18,7 @@ T = int(input())
 for case in range(T):
     N, M = map(int, input().split())    # N: 수열의 길이, M: 수열의 개수
 
-    result = [1001] * M
+    result = [1001]
     for i in range(M):
         suyeol = list(map(int, input().split()))    # 하나씩 받아서 확인하기
         for j in range(N * i + 1):  # 처음엔 바로 입력하기 위한 범위
