@@ -35,4 +35,4 @@ for case in range(T):
                 pizza.append((cheeze[N-1][0], cheeze[N - 1][1] // 2))
         else:
             pizza.append((temp[0], temp[1] // 2))
-    print(f'#{case+1} {pizza.pop()}')
+    print(f'#{case+1} {pizza.pop()[0]}')
