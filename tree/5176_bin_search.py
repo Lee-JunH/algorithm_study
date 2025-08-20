@@ -9,7 +9,7 @@ SWEA_5176 - 이진탐색 - D2
 
 풀이
 1. 이진트리는 왼쪽과 오른쪽 노드를 자식으로 가지는 것을 이용해보자
-2. index는 왼쪽은 부모의 *2, 오른쪽은 부모의 *2 + 1인 것을 이용
+2. index는 왼쪽은 부모의 2배, 오른쪽은 부모의 2배 + 1인 것을 이용
 3. 중위 순회 방식으로 값들을 저장하고 마지막에 index로 출력한다.
 """
 
@@ -20,11 +20,11 @@ def inorder_traversal(cur):    # 중위 순회
     right_i = 2*cur + 1 # 오른쪽 인덱스
     
     if left_i <= N:
-        inorder_traversal(left_i)    # 왼쪽아래로 먼저 이동
+        inorder_traversal(left_i)    # 왼쪽노드로 먼저 이동
     tree[cur] = cnt
-    cnt += 1
+    cnt += 1        # 값 넣었으니까 +1
     if right_i <= N:
-        inorder_traversal(right_i)   # 오른쪽아래로 이동
+        inorder_traversal(right_i)   # 오른쪽노드로 이동
 
 T = int(input())
 for case in range(T):
