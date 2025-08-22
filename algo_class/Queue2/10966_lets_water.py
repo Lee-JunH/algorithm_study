@@ -15,39 +15,36 @@ SWEA_10966 - 물놀이를 가자 - D4
 
 from collections import deque
 
-def bfs(start, end):
-    dr = [0, 1, 0, -1]
-    dc = [1, 0, -1, 0]
-    vis = [[0 for _ in range(M)] for _ in range(N)]
-    my_q = deque()
-    my_q.append([start, end])
-    dis = [[0 for _ in range(M)] for _ in range(N)]
-
-    while my_q:
-        r, c = my_q.popleft()
-        vis[r][c] = 1
-        for dir in range(4):
-            nr = r + dr[dir]
-            nc = c + dc[dir]
-            if nr >= N or nr < 0 or nc < 0 or nc >= M or vis[nr][nc] == 1:
-                continue
-            if water[nr][nc] == 'W':
-                return dis[r][c] + 1
-            vis[nr][nc] = 1
-            dis[nr][nc] = dis[r][c] + 1
-            my_q.append([nr, nc])
-    return 0
-
 T = int(input()) 
 for case in range(T):
     N, M = map(int, input().split())
     water = [list(input().strip()) for _ in range(N)]
 
+    vis = [[-1 for _ in range(M)] for _ in range(N)]
+    dr = [0, 1, 0, -1]
+    dc = [1, 0, -1, 0]
+
+    my_q = deque()
+    for i in range(N):
+        for j in range(M):
+            if water[i][j] == 'W':
+                my_q.append((i, j))
+                vis[i][j] = 0
+
+    while my_q:
+        r, c = my_q.popleft()
+        for dir in range(4):
+            nr = r + dr[dir]
+            nc = c + dc[dir]
+            if nr >= N or nr < 0 or nc < 0 or nc >= M:
+                continue
+            if vis[nr][nc] == -1:
+                vis[nr][nc] = vis[r][c] + 1
+                my_q.append((nr, nc))
+
     result = 0
     for i in range(N):
         for j in range(M):
             if water[i][j] == 'L':
-                result += bfs(i, j)
-    
+                result += vis[i][j]
     print(f'#{case+1} {result}')
-
