@@ -23,14 +23,14 @@ def tunnel(t):
     elif t == 5:
         direction = [(1, 0, 'd'), (0, 1, 'r')]
     elif t == 6:
-        direction = [(-1, 0, 'up'), (0, -1, 'l')]
-    elif t == 7:
         direction = [(1, 0, 'd'), (0, -1, 'l')]
+    elif t == 7:
+        direction = [(-1, 0, 'up'), (0, -1, 'l')]
     return direction
 
 def connected(dir1, dir2):
     if dir1 == 'up':
-        if dir2 == 3 or dir2 == 4 or dir == 7:
+        if dir2 == 3 or dir2 == 4 or dir2 == 7:
             return 0
     if dir1 == 'd':
         if dir2 == 3 or dir2 == 5 or dir2 == 6:
@@ -58,7 +58,7 @@ def bfs(vis):
             nc = c + dc
             if nr < 0 or nc < 0 or nr >= N or nc >= M:      # 범위를 벗어나는 경우
                 continue
-            if vis[nr][nc] != 0 or my_map[nr][nc] == 0:    # 방문 했거나, 터널이 없는 경우
+            if vis[nr][nc] >= 1 or my_map[nr][nc] == 0:    # 방문 했거나, 터널이 없는 경우
                 continue
             if not connected(direct, my_map[nr][nc]):
                 continue
