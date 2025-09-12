@@ -8,33 +8,7 @@ SWEA_1952 - 수영장 - 모의 SW 역량 테스트
 풀이
 - 먼저 각 달마다 1일가격으로 계산한다.
 - 그다음 한달 가격과 비교해서 업데이트 한다.
-- 
 """
-
-def dfs(idx, hap):
-    global result
-
-    if idx == 14:
-        result = min(result, hap)
-
-    if result < hap:
-        return
-
-    for i in range(idx, 14):
-        hap3 = 0
-        for j in range(i-2, i+1):
-            if j >= 12 or j < 0 or price[j] == 0:
-                continue
-            hap3 += price[j]
-        if hap3 == 0:
-            continue
-        if hap3 > month3:
-            dfs(i+3, hap+month3)
-        else:
-            if i-2 >= 0:
-                dfs(i+1, hap+price[i-2])
-            else:
-                dfs(i+1, hap)
 
 T = int(input())
 for case in range(T):
@@ -48,10 +22,36 @@ for case in range(T):
             price[i] = day_price
         else:
             price[i] = month1
-    print(*price)
     
-    result = sum(price)
+    min_hap = [0 for _ in range(12)]
+    min_hap[0] = min(month3, price[0])
+    for i in range(1, 12):
+        if i < 3:
+            min_hap[i] = min(month3, min_hap[i-1] + price[i])
+        else:
+            min_hap[i] = min(min_hap[i-3]+month3, min_hap[i-1] + price[i])
 
-    if result > year:
-        result = year
-    print(f'#{case+1} {result}')
+    if min_hap[11] > year:
+        print(f'#{case+1} {year}')
+    else:    
+        print(f'#{case+1} {min_hap[11]}')
+
+
+# 재귀로 푸는 방식 (강의)
+
+# 종료 조건 : 12월 을 모두 고려한 경우
+# 가지의 수 : 4개 (일, 달, 달3, 년)
+
+# def recur(month, total):
+#     global min_answer
+#     if month > 12:
+#         min_answer = min(min_answer)
+#         return
+#     # 1일권으로 사는 경우
+#     recur(month+1, total + (days[month]*day))
+#     # 1달권으로 사는 경우
+#     recur(month+1, total + month1)
+#     # 3달권으로 사는 경우
+#     recur(month+3, total + month3)
+#     # 1년으로 사는 경우
+#     recur(month+12, total + year)
