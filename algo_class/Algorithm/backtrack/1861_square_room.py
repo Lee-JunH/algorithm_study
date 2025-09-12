@@ -45,7 +45,7 @@ for case in range(T):
                 backtrack(i, j)
 
     max_d = max(my_room)
-    for i in range(N+1):
+    for i in range(N**2):
         if my_room[i] == max_d:
             print(f'#{case+1} {i} {max_d}')
             break
