@@ -11,11 +11,9 @@ SWEA_1861 - 정사각형 방 - D4
 - 각 위치부터 dfs를 하고 각 크기를 저장
 """
 
-def backtrack(r, c, cur):
+def backtrack(r, c):
     global cnt
-
-    if room[r][c] == N**2:
-        return
+    global start
 
     for dir in range(4):
         nr = r + dr[dir]
@@ -25,17 +23,16 @@ def backtrack(r, c, cur):
         if room[r][c] + 1 == room[nr][nc]:
             cnt += 1
             visited[nr][nc] = 1
-            backtrack(nr, nc, cur)
-    my_room[cur] = cnt
-    
-
+            backtrack(nr, nc)
+            break
+    my_room[start] = cnt
 
 T = int(input())
 for case in range(T):
     N = int(input())
     room = [list(map(int, input().split())) for _ in range(N)]
 
-    my_room = [0 for _ in range(N+1)]
+    my_room = [0 for _ in range(N**2+1)]
     dr = [0, 1, 0, -1]
     dc = [1, 0, -1, 0]
 
@@ -44,7 +41,8 @@ for case in range(T):
         for j in range(N):
             if not visited[i][j]:
                 cnt = 1
-                backtrack(i, j, room[i][j])
+                start = room[i][j]
+                backtrack(i, j)
 
     max_d = max(my_room)
     for i in range(N+1):
