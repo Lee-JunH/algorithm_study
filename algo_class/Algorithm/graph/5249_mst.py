@@ -8,10 +8,38 @@ SWEA_5249 - 최소 신장 트리 - D4
 - 이 그래프로부터 최소신장트리를 구성하는 간선의 가중치를 모두 더해 출력하는 문제
 """
 
+from heapq import heappush, heappop, heapify
+
+def search(start, dist):
+    global result
+
+    lst = []
+    for next in node[start]:
+        lst.append(next)
+    visited[0] = 1
+
+    heapify(lst)
+    while lst:
+        weight, now = heappop(lst)
+
+        if not visited[now]:
+            result += weight
+            visited[now] = 1
+            for weight, next in node[now]:
+                if not visited[next]:
+                    heappush(lst, (weight, next))
+
 T = int(input())
 for case in range(T):
     V, E = map(int, input().split())
     node = [[] for _ in range(V+1)]
     for _ in range(E):
         n1, n2, w = map(int, input().split())
-        
+        node[n1].append((w, n2))
+        node[n2].append((w, n1))
+    
+    visited = [0] * (V + 1)
+    result = 0
+    search(0,0)
+
+    print(f'#{case+1} {result}')
